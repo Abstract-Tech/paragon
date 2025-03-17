@@ -1,0 +1,23 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+const CardDivider = /*#__PURE__*/React.forwardRef((_ref, ref) => {
+  let {
+    className,
+    ...props
+  } = _ref;
+  return /*#__PURE__*/React.createElement("div", {
+    className: classNames('pgn__card-divider', className),
+    ref: ref,
+    ...props
+  });
+});
+CardDivider.propTypes = {
+  /** Specifies class name to append to the base element. */
+  className: PropTypes.string
+};
+CardDivider.defaultProps = {
+  className: undefined
+};
+export default CardDivider;
+//# sourceMappingURL=CardDivider.js.map

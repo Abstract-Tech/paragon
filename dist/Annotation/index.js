@@ -1,0 +1,34 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+const Annotation = /*#__PURE__*/React.forwardRef((_ref, ref) => {
+  let {
+    className,
+    variant,
+    children,
+    arrowPlacement,
+    ...props
+  } = _ref;
+  return /*#__PURE__*/React.createElement("span", {
+    className: classNames(className, 'pgn__annotation', `pgn__annotation-${variant}-${arrowPlacement}`),
+    ref: ref,
+    ...props
+  }, children);
+});
+Annotation.defaultProps = {
+  className: undefined,
+  variant: 'success',
+  arrowPlacement: 'bottom'
+};
+Annotation.propTypes = {
+  /** Specifies contents of the component. */
+  children: PropTypes.node.isRequired,
+  /** Specifies class name to append to the base element. */
+  className: PropTypes.string,
+  /** Specifies variant to use. */
+  variant: PropTypes.oneOf(['error', 'success', 'warning', 'light', 'dark']),
+  /** Specifies arrow position. */
+  arrowPlacement: PropTypes.oneOf(['top', 'right', 'bottom', 'left'])
+};
+export default Annotation;
+//# sourceMappingURL=index.js.map

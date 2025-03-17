@@ -97,6 +97,7 @@ const FormAutosuggest = forwardRef(
           onClick: (e) => handleItemSelect(e, onClick),
           id: menuItemId,
           onFocus: () => handleMenuItemFocus(menuItemId),
+         // iconAfter: menuItemId === activeMenuItemId && CheckCircle,
         });
       });
 
@@ -115,11 +116,19 @@ const FormAutosuggest = forwardRef(
       setIsDropdownExpanded(true);
     };
 
-    const toggleDropdown = () => {
+    const toggleDropdown = (e) => {
       if (isDropdownExpanded) {
         collapseDropdown();
       } else {
+        if(e?.currentTarget?.name === 'toggleIcon') {
+          // Force to show all items given the event source is 
+          setDropdownItems(getItems());
+          setIsValid(true);
+          setErrorMessage('');
+          setIsDropdownExpanded(true);
+        }else{
         expandDropdown();
+        }
       }
     };
 
@@ -130,6 +139,7 @@ const FormAutosuggest = forwardRef(
         tabIndex="-1"
         src={isDropdownExpanded ? KeyboardArrowUp : KeyboardArrowDown}
         iconAs={Icon}
+        name="toggleIcon"
         size="sm"
         variant="secondary"
         alt={isDropdownExpanded
@@ -222,7 +232,11 @@ const FormAutosuggest = forwardRef(
     }, [value]);
 
     const handleTextboxClick = () => {
-      expandDropdown();
+      setDropdownItems(getItems());
+      setIsValid(true);
+      setErrorMessage('');
+      setIsDropdownExpanded(true);
+
     };
 
     const handleTextInput = (e) => {
